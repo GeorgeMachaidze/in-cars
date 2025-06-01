@@ -2,14 +2,31 @@
 
 import { useState } from "react";
 import styled from "styled-components";
-import ArrowUpSvg from "../svg/ArrowUpSvg";
-import ArrowDownSvg from "../svg/ArrowDownSvg";
+import DropDownComponent from "./dropDownComponent/DropDownComponent";
 
 export default function HomePage() {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const dropDownHandler = () => {
-    setDropdownVisible(!dropdownVisible);
-  };
+  const budget = [
+    "Ford Fusion2015-2020",
+    "Honda Accord 2016-2020",
+    "Audi A8 2018-2021",
+    "Audi A8 2018-2019",
+    "Audi A8 2018-2019",
+    "Audi A8 2018-2019",
+  ];
+  const middle = [
+    "Lexus IS 250 2015-2020",
+    "KIA Optima 2016-2018",
+    "Audi A8 2014-2019",
+    "Audi A8 2018-2019",
+    "Audi A8 2018-2019",
+  ];
+  const premium = [
+    "Mercedes-Benz CLS 2015-2020",
+    "BMW 7 Series 2016-2020",
+    "Audi A8 2018-2019",
+    "Audi A8 2018-2019",
+  ];
+
   return (
     <MainBox>
       <HeaderDiv>
@@ -23,7 +40,7 @@ export default function HomePage() {
           </ImageWrapper>
           <CardText>ბიუჯეტური</CardText>
           <CardText>4000-5000$</CardText>
-          <DropDown />
+          <DropDownComponent brands={budget} />
         </CarCard>
         <CarCard>
           <ImageWrapper>
@@ -31,14 +48,15 @@ export default function HomePage() {
           </ImageWrapper>
           <CardText style={{ marginTop: "-40px" }}>საშუალო</CardText>
           <CardText>4000-5000$</CardText>
+          <DropDownComponent brands={middle} />
         </CarCard>
-
         <CarCard>
           <ImageWrapper>
             <CarImage src="/images/lexus.png" alt="Car 3" />
           </ImageWrapper>
           <CardText style={{ marginTop: "-20px" }}>პრემიუმი</CardText>
           <CardText>4000-5000$</CardText>
+          <DropDownComponent brands={premium} />
         </CarCard>
       </VehiclesDiv>
     </MainBox>
@@ -60,36 +78,6 @@ const VehiclesDiv = styled.div`
   align-items: center;
   margin-top: 25px;
   gap: 30px;
-`;
-
-const DropDownText = styled.h3`
-  font-size: 18px; // Adjust size as needed
-  font-weight: 500; // Semi-bold, you can use 700 for bold
-  color: #333; // Dark gray text
-  margin: 0; // Reset margin
-  padding: 0; // Reset padding
-  line-height: 1.4; // Improve readability
-`;
-const DropDown = styled.div`
-  width: 250px;
-  height: 50px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 10px 12px;
-  font-size: 16px;
-  color: #333;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  user-select: none;
-
-  &:hover {
-    border-color: #999;
-  }
 `;
 
 const ImageWrapper = styled.div`
