@@ -3,28 +3,59 @@
 import { useState } from "react";
 import styled from "styled-components";
 import DropDownComponent from "./dropDownComponent/DropDownComponent";
+import mainStore from "@/store/mainStore";
 
 export default function HomePage() {
+  const carModel = mainStore((state) => state.carModel);
   const budget = [
-    "Audi A4 2014-2016",
-    "BMW 320 2013-2016",
-    "BMW 320 2013-2015",
-    "Buick Encore 2017-2020",
-    "Chevrolet Cruze 2016-2020",
-    "Chevrolet Malibu 2016-2020",
-    "Chevrolet Trax 2017-2020",
-    "Fiat 500 2016-2020",
-    "Ford Fusion 2013-2020",
-    "Ford Focus 2017-2018",
-    "Ford EcoSport 2018-2020",
-    "Ford Escape 2017-2018",
-    "Honda Accord 2014-2017",
-    "Hyundai Sonata 2016-2020",
-    "Hyundai Elantra 2017-2018",
-    "Hyundai Tucson 2014-2015",
-    "Jeep Renegade 2015-2018",
-    "Jeep Compass 2014-2016",
-    "Jeep Patriot 2014-2017",
+    { model: "Audi A4 2014-2016", type: "budget" },
+    { model: "BMW 320 2013-2016", type: "budget" },
+    { model: "BMW 320 2013-2015", type: "budget" },
+    { model: "Buick Encore 2017-2020", type: "budget" },
+    { model: "Chevrolet Cruze 2016-2020", type: "budget" },
+    { model: "Chevrolet Malibu 2016-2020", type: "budget" },
+    { model: "Chevrolet Trax 2017-2020", type: "budget" },
+    { model: "Fiat 500 2016-2020", type: "budget" },
+    { model: "Ford Fusion 2013-2020", type: "budget" },
+    { model: "Ford Focus 2017-2018", type: "budget" },
+    { model: "Ford EcoSport 2018-2020", type: "budget" },
+    { model: "Ford Escape 2017-2018", type: "budget" },
+    { model: "Honda Accord 2014-2017", type: "budget" },
+    { model: "Hyundai Sonata 2016-2020", type: "budget" },
+    { model: "Hyundai Elantra 2017-2018", type: "budget" },
+    { model: "Hyundai Tucson 2014-2015", type: "budget" },
+    { model: "Jeep Renegade 2015-2018", type: "budget" },
+    { model: "Jeep Compass 2014-2016", type: "budget" },
+    { model: "Jeep Patriot 2014-2017", type: "budget" },
+    { model: "Kia Optima 2016-2020", type: "budget" },
+    { model: "Kia Forte 2017-2018", type: "budget" },
+    { model: "Kia Rio 2017-2020", type: "budget" },
+    { model: "Kia Soul 2017-2019", type: "budget" },
+    { model: "Kia Sportage 2014-2015", type: "budget" },
+    { model: "Lincoln MKZ 2013-2016", type: "budget" },
+    { model: "Lexus CT-200h 2014-2015", type: "budget" },
+    { model: "Mazda 3 2015-2018", type: "budget" },
+    { model: "Mazda 6 2014-2018", type: "budget" },
+    { model: "Mercedes C Class 2013-2014", type: "budget" },
+    { model: "Mini Cooper 2014-2018", type: "budget" },
+    { model: "Mitsubishi Outlander 2014-2015", type: "budget" },
+    { model: "Mitsubishi Outlander Sport 2014-2019", type: "budget" },
+    { model: "Nissan Roge 2015-2016", type: "budget" },
+    { model: "Nissan Quest 2013-2017", type: "budget" },
+    { model: "Nissan Pathfinder 2013-2018", type: "budget" },
+    { model: "Nissan Juke 2014-2016", type: "budget" },
+    { model: "Nissan Sentra 2014-2018", type: "budget" },
+    { model: "Subaru Forester 2015-2018", type: "budget" },
+    { model: "Subaru Outback 2015-2019", type: "budget" },
+    { model: "Subaru Crosstrek 2014-2015", type: "budget" },
+    { model: "Toyota Camry 2013-2014", type: "budget" },
+    { model: "Toyota Prius 2014-2015", type: "budget" },
+    { model: "Toyota Prius c 2013-2016", type: "budget" },
+    { model: "Toyota Prius V 2013-2015", type: "budget" },
+    { model: "Toyota Yaris 2013-2015", type: "budget" },
+    { model: "Volkswagen Golf 2014-2017", type: "budget" },
+    { model: "Volkswagen Jetta 2016-2017", type: "budget" },
+    { model: "Volkswagen Passat 2015-2018", type: "budget" },
   ];
   const middle = [
     "Lexus IS 250 2015-2020",
@@ -39,7 +70,7 @@ export default function HomePage() {
     "Audi A8 2018-2019",
     "Audi A8 2018-2019",
   ];
-
+  console.log(carModel);
   return (
     <MainBox>
       <HeaderDiv>
@@ -54,6 +85,7 @@ export default function HomePage() {
           <CardText>ბიუჯეტური</CardText>
           <CardText>4000-5000$</CardText>
           <DropDownComponent brands={budget} />
+          {carModel.type === "budget" && <DoneButton>შეკვეთა</DoneButton>}
         </CarCard>
         <CarCard>
           <ImageWrapper>
@@ -115,7 +147,7 @@ const CarCard = styled.div`
   gap: 24px;
   border-radius: 12px;
   padding: 20px;
-  height: 400px;
+  height: 500px;
   background-color: #f0f0f0; // Optional: background behind transparent areas
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Optional: subtle shadow
   &:hover {
@@ -145,6 +177,24 @@ const HeaderDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
+`;
+const DoneButton = styled.button`
+  background-color: #6e82a1;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: #005bb5;
+  }
+
+  &:active {
+    background-color: #00448f;
+  }
 `;
 
 const HeadBanner = styled.div`

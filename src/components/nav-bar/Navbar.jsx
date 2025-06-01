@@ -29,7 +29,7 @@ export default function Navbar() {
               style={{
                 backgroundColor:
                   pathname === "/landing/industries"
-                    ? "rgba(30, 100, 200, 1"
+                    ? "rgba(30, 100, 200, 1)"
                     : "transparent",
               }}
             >

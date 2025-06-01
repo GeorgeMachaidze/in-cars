@@ -1,26 +1,34 @@
 "use client";
 import ArrowDownSvg from "@/components/svg/ArrowDownSvg";
 import ArrowUpSvg from "@/components/svg/ArrowUpSvg";
+import mainStore from "@/store/mainStore";
 import { useState } from "react";
 import styled from "styled-components";
 
 export default function DropDownComponent({ brands }) {
+  const carModel = mainStore((state) => state.carModel);
+  const updateData = mainStore((state) => state.updateData);
+  const [selectedModel, setSelectedModel] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const handleSelect = (brand) => {
-    setSelected(brand);
+    setSelectedModel(brand);
+    updateData("carModel", brand);
     setIsOpen(false);
   };
-
-  console.log(brands);
+  console.log(carModel?.type);
   return (
     <MainDiv onClick={() => setIsOpen(!isOpen)}>
-      <DropDownText>მანქანის არჩევა</DropDownText>
+      <DropDownText>
+        {selectedModel && selectedModel?.type === "budget"
+          ? carModel?.model
+          : "მანქანის არჩევა"}
+      </DropDownText>
       {isOpen ? <ArrowUpSvg /> : <ArrowDownSvg />}
       {isOpen && (
         <List>
           {brands.map((brand, index) => (
             <ListItem key={index} onClick={() => handleSelect(brand)}>
-              {brand}
+              {brand?.model}
             </ListItem>
           ))}
         </List>
@@ -58,6 +66,7 @@ const DropDownText = styled.h3`
   margin: 0;
   padding: 0;
   line-height: 1.4;
+  text-align: center;
 `;
 const List = styled.ul`
   position: absolute;
@@ -77,10 +86,8 @@ const ListItem = styled.li`
   padding: 10px;
   list-style: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+
+  text-align: left;
 
   &:hover {
     background-color: #f0f0f0;
