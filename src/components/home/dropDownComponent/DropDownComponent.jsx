@@ -6,6 +6,11 @@ import styled from "styled-components";
 
 export default function DropDownComponent({ brands }) {
   const [isOpen, setIsOpen] = useState(false);
+  const handleSelect = (brand) => {
+    setSelected(brand);
+    setIsOpen(false);
+  };
+
   console.log(brands);
   return (
     <MainDiv onClick={() => setIsOpen(!isOpen)}>
@@ -61,6 +66,8 @@ const List = styled.ul`
   background: white;
   width: 100%;
   border-radius: 8px;
+  height: 200px;
+  overflow: auto;
   margin-top: 4px;
   padding: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);

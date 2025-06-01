@@ -6,12 +6,25 @@ import DropDownComponent from "./dropDownComponent/DropDownComponent";
 
 export default function HomePage() {
   const budget = [
-    "Ford Fusion2015-2020",
-    "Honda Accord 2016-2020",
-    "Audi A8 2018-2021",
-    "Audi A8 2018-2019",
-    "Audi A8 2018-2019",
-    "Audi A8 2018-2019",
+    "Audi A4 2014-2016",
+    "BMW 320 2013-2016",
+    "BMW 320 2013-2015",
+    "Buick Encore 2017-2020",
+    "Chevrolet Cruze 2016-2020",
+    "Chevrolet Malibu 2016-2020",
+    "Chevrolet Trax 2017-2020",
+    "Fiat 500 2016-2020",
+    "Ford Fusion 2013-2020",
+    "Ford Focus 2017-2018",
+    "Ford EcoSport 2018-2020",
+    "Ford Escape 2017-2018",
+    "Honda Accord 2014-2017",
+    "Hyundai Sonata 2016-2020",
+    "Hyundai Elantra 2017-2018",
+    "Hyundai Tucson 2014-2015",
+    "Jeep Renegade 2015-2018",
+    "Jeep Compass 2014-2016",
+    "Jeep Patriot 2014-2017",
   ];
   const middle = [
     "Lexus IS 250 2015-2020",
