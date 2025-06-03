@@ -73,8 +73,19 @@ export default function HomePage() {
   console.log(carModel);
   return (
     <MainBox>
-      <HeaderDiv></HeaderDiv>
-      <VehiclesDiv>
+      <HeaderDiv>
+        <HeaderLeftSide>
+          <HeaderLeftSideTexts>
+            <HeaderSmallText>მანქანის დაჯავშნა</HeaderSmallText>
+            <MainText>აირჩიეთ თქვენთვის სასურველი მანქანა</MainText>
+          </HeaderLeftSideTexts>
+          <MainButton>
+            შეუკვეთე
+            <ButtonLine></ButtonLine>
+          </MainButton>
+        </HeaderLeftSide>
+      </HeaderDiv>
+      {/* <VehiclesDiv>
         <CarCard>
           <ImageWrapper>
             <CarImage src="/images/ford.png" alt="Car 1" />
@@ -100,7 +111,7 @@ export default function HomePage() {
           <CardText>4000-5000$</CardText>
           <DropDownComponent brands={premium} />
         </CarCard>
-      </VehiclesDiv>
+      </VehiclesDiv> */}
     </MainBox>
   );
 }
@@ -113,6 +124,73 @@ const MainBox = styled.div`
   width: 100%;
   height: 100vh;
   background-color: #f2f4f9;
+`;
+
+const HeaderDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 120px;
+  width: 100%;
+`;
+
+const HeaderLeftSide = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const HeaderLeftSideTexts = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 15px;
+`;
+const HeaderSmallText = styled.h6`
+  font-family: "Open Sans";
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--red);
+`;
+const MainText = styled.h1`
+  font-family: "Atkinson Hyperlegible";
+  font-size: 98px;
+  font-weight: bold;
+  color: var(--darkBlue);
+`;
+
+const MainButton = styled.button`
+  width: 243px;
+  height: 67px;
+  background-color: #f7931e;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 60px;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+`;
+
+const ButtonLine = styled.div`
+  width: 36px;
+  height: 4px;
+  background-color: white;
 `;
 
 const VehiclesDiv = styled.div`
@@ -168,14 +246,6 @@ const LogoImage = styled.img`
   object-fit: cover;
 `;
 
-const MainText = styled.h1``;
-const HeaderDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-`;
 const DoneButton = styled.button`
   background-color: #6e82a1;
   color: white;
