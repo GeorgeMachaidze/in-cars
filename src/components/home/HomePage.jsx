@@ -73,10 +73,7 @@ export default function HomePage() {
   console.log(carModel);
   return (
     <MainBox>
-      <HeaderDiv>
-        <LogoImage src="/images/logo.png" alt="logo"></LogoImage>
-        <MainText>მანქანების იმპორტი</MainText>
-      </HeaderDiv>
+      <HeaderDiv></HeaderDiv>
       <VehiclesDiv>
         <CarCard>
           <ImageWrapper>
@@ -115,6 +112,7 @@ const MainBox = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100vh;
+  background-color: #f2f4f9;
 `;
 
 const VehiclesDiv = styled.div`
@@ -202,20 +200,9 @@ const HeadBanner = styled.div`
   align-items: center;
   justify-content: center;
   background-size: cover;
-  background-image: url("/images/fusion.png");
+  background-image: url("/images/tesla.png");
   height: 1000px;
-  /* @media screen and (min-width: 1280px) {
-    height: 450px;
-  }
-  @media screen and (min-width: 1024px) {
-    height: 400px;
-  }
-  @media screen and (min-width: 1536px) {
-    height: 450px;
-  }
-  @media screen and (min-width: 1920px) {
-    height: 550px;
-  } */
+  width: 90%;
 `;
 const HeaderText = styled.h1`
   font-family: "Open Sans";

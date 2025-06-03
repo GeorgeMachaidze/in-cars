@@ -9,7 +9,7 @@ const BurgerMenuWhite = () => {
       viewBox="0,0,256,256"
     >
       <g
-        fill="#ffffff"
+        fill="var(--yellow)"
         fillRule="nonzero"
         stroke="none"
         strokeWidth="1"

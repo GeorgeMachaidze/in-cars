@@ -7,6 +7,7 @@ import NavbarCloseIcon from "../svg/NavbarColseIcon";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -15,45 +16,29 @@ export default function Navbar() {
     <MainDiv>
       <NavBar>
         <NavBarLeftSide>
+          <LogoImage src="/images/logo.png" alt="logo"></LogoImage>
           <IconBox onClick={toggleMenu}>
             <BurgerMenuWhite />
           </IconBox>
-          <LogoImage src="/images/logo.png" alt="logo"></LogoImage>
         </NavBarLeftSide>
         <NavBarRightSide>
           <MenuList>
-            <MenuItem>
-              <Link href="/">მთავარი</Link>
-            </MenuItem>
             <MenuItem
               style={{
-                backgroundColor:
-                  pathname === "/landing/industries"
-                    ? "rgba(30, 100, 200, 1)"
-                    : "transparent",
+                color: isHomePage ? "var(--yellow)" : "transparent",
               }}
             >
+              <Link href="/">მთავარი</Link>
+              {isHomePage ? <SmallLine></SmallLine> : null}
+            </MenuItem>
+            <MenuItem>
               <Link href="/landing/industries">ჩვენს შესახებ</Link>
             </MenuItem>
-            <MenuItem
-              style={{
-                backgroundColor:
-                  pathname === "/landing/about"
-                    ? "rgba(31, 31, 31, 1"
-                    : "transparent",
-              }}
-            >
+            <MenuItem>
               <Link href="/landing/about">კალკულატორი</Link>
             </MenuItem>
 
-            <MenuItem
-              style={{
-                backgroundColor:
-                  pathname === "/landing/contact"
-                    ? "rgba(31, 31, 31, 1"
-                    : "transparent",
-              }}
-            >
+            <MenuItem>
               <Link href="/landing/contact">კონტაქტი</Link>
             </MenuItem>
           </MenuList>
@@ -130,6 +115,7 @@ const MainDiv = styled.div`
   width: 100vw;
   position: fixed;
   z-index: 10;
+  background-color: #f2f4f9;
 `;
 const LogoImage = styled.img`
   cursor: pointer;
@@ -139,8 +125,7 @@ const LogoImage = styled.img`
 `;
 const NavBar = styled.div`
   position: relative;
-  background-color: rgb(221, 234, 242);
-  padding: 16px 20px;
+  padding: 32px 120px;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
@@ -150,6 +135,7 @@ const NavBar = styled.div`
 const NavBarLeftSide = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
 `;
 const NavbarText = styled.h3`
@@ -207,15 +193,13 @@ const Menu = styled.div`
 
 const MenuItem = styled.li`
   font-family: "Open Sans";
-  color: inherit;
-  font-size: inherit;
-  font-style: inherit;
-  font-weight: inherit;
+  font-size: 16px;
+  font-style: semi-bold;
+  font-weight: 600;
   width: fit-content;
   padding: 10px 8px;
   border-radius: 6px;
-  background-color: #b3c2d8;
-  color: black;
+  color: #bdbdbd;
   @media screen and (min-width: 1024px) {
     &:hover {
       opacity: 0.7;
@@ -228,4 +212,10 @@ const IconBox = styled.div`
   @media screen and (min-width: 768px) {
     display: none;
   }
+`;
+const SmallLine = styled.div`
+  width: 50%;
+  height: 2px;
+  margin-top: 6px;
+  background-color: var(--yellow);
 `;
