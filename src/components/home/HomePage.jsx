@@ -4,8 +4,21 @@ import { useState } from "react";
 import styled from "styled-components";
 import DropDownComponent from "./dropDownComponent/DropDownComponent";
 import mainStore from "@/store/mainStore";
+import TeslaSvg from "../svg/TeslaSvg";
 
 export default function HomePage() {
+  function getStateTaxRate(state) {
+    const taxRates = {
+      CA: 0.0875,
+      TX: 0.0625,
+      FL: 0.06,
+      NY: 0.04,
+      GA: 0.07,
+      // Add more as needed
+    };
+    return taxRates[state] || 0.07; // Default to 7% if unknown
+  }
+
   const carModel = mainStore((state) => state.carModel);
   const budget = [
     { model: "Audi A4 2014-2016", type: "budget" },
@@ -76,15 +89,38 @@ export default function HomePage() {
       <HeaderDiv>
         <HeaderLeftSide>
           <HeaderLeftSideTexts>
-            <HeaderSmallText>მანქანის დაჯავშნა</HeaderSmallText>
-            <MainText>აირჩიეთ თქვენთვის სასურველი მანქანა</MainText>
+            <HeaderSmallText>PLAN YOUR TRIP NOW </HeaderSmallText>
+            <MainText>EXPLORE THE WORLD WITH US</MainText>
           </HeaderLeftSideTexts>
           <MainButton>
             შეუკვეთე
             <ButtonLine></ButtonLine>
           </MainButton>
         </HeaderLeftSide>
+        <HeadBanner></HeadBanner>
       </HeaderDiv>
+      <MiddleDiv>
+        <BoxDiv>
+          <TeslaSvg />
+          <BigText>ტექსტი</BigText>
+          <SmallText>გრძელი ტექსტი</SmallText>
+        </BoxDiv>
+        <BoxDiv>
+          <TeslaSvg />
+          <BigText>ტექსტი</BigText>
+          <SmallText>გრძელი ტექსტი</SmallText>
+        </BoxDiv>
+        <BoxDiv>
+          <TeslaSvg />
+          <BigText>ტექსტი</BigText>
+          <SmallText>გრძელი ტექსტი</SmallText>
+        </BoxDiv>
+        <BoxDiv>
+          <TeslaSvg />
+          <BigText>ტექსტი</BigText>
+          <SmallText>გრძელი ტექსტი</SmallText>
+        </BoxDiv>
+      </MiddleDiv>
       {/* <VehiclesDiv>
         <CarCard>
           <ImageWrapper>
@@ -123,18 +159,33 @@ const MainBox = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100vh;
+  padding-top: 92px;
   background-color: #f2f4f9;
 `;
 
 const HeaderDiv = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   margin-left: 120px;
   width: 100%;
 `;
+const MiddleDiv = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 40px;
+  background-color: #f2f4f9;
+`;
+const BoxDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 25%;
+`;
 
+const SmallText = styled.h3`
+  font-size: 18px;
+  color: var(--middleGrey);
+`;
 const HeaderLeftSide = styled.div`
   display: flex;
   flex-direction: column;
@@ -143,7 +194,6 @@ const HeaderLeftSide = styled.div`
 const HeaderLeftSideTexts = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
   gap: 15px;
 `;
 const HeaderSmallText = styled.h6`
@@ -155,6 +205,7 @@ const HeaderSmallText = styled.h6`
 const MainText = styled.h1`
   font-family: "Atkinson Hyperlegible";
   font-size: 98px;
+  max-width: auto;
   font-weight: bold;
   color: var(--darkBlue);
 `;
@@ -162,7 +213,7 @@ const MainText = styled.h1`
 const MainButton = styled.button`
   width: 243px;
   height: 67px;
-  background-color: #f7931e;
+  background-color: var(--yellow);
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -185,6 +236,14 @@ const MainButton = styled.button`
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
+`;
+const HeadBanner = styled.div`
+  background-image: url("/images/tesla.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  height: 712px;
 `;
 
 const ButtonLine = styled.div`
@@ -265,15 +324,6 @@ const DoneButton = styled.button`
   }
 `;
 
-const HeadBanner = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-image: url("/images/tesla.png");
-  height: 1000px;
-  width: 90%;
-`;
 const HeaderText = styled.h1`
   font-family: "Open Sans";
   color: white;
@@ -291,20 +341,10 @@ const MiddleBox = styled.div`
   gap: 20px;
 `;
 const BigText = styled.h1`
-  font-family: "Oswald";
-  font-size: 22pt;
-  line-height: 1.42;
-  font-weight: 400;
-  color: rgba(31, 31, 31, 1);
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--darkBlue);
   text-transform: uppercase;
-  margin-top: 100px;
-  margin-bottom: 80px;
-  @media screen and (min-width: 480px) {
-    font-size: 26pt;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 29pt;
-  }
 `;
 const MediumText = styled.h3`
   font-family: "Open Sans";
