@@ -1,7 +1,7 @@
 const TeslaSvg = () => {
   return (
     <svg
-      fill="var(--darkBlue )"
+      fill="blue"
       viewBox="0 0 50 50"
       width={"150px"}
       height={"150px"}

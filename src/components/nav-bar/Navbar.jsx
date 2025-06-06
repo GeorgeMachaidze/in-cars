@@ -114,7 +114,6 @@ export default function Navbar() {
 const MainDiv = styled.div`
   width: 100vw;
   position: fixed;
-  z-index: 10;
   background-color: #f2f4f9;
 `;
 const LogoImage = styled.img`
@@ -125,7 +124,7 @@ const LogoImage = styled.img`
 `;
 const NavBar = styled.div`
   position: relative;
-  padding: 32px 30px;
+  padding: 26px 30px;
 
   @media screen and (min-width: 768px) {
     display: flex;

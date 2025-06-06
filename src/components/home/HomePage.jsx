@@ -5,20 +5,11 @@ import styled from "styled-components";
 import DropDownComponent from "./dropDownComponent/DropDownComponent";
 import mainStore from "@/store/mainStore";
 import TeslaSvg from "../svg/TeslaSvg";
+import EvacuatorSvg from "../svg/EvacuatorSvg";
+import TaxiDriverSvg from "../svg/TaxiDriverSvg";
+import PartsSvg from "../svg/PartsSvg";
 
 export default function HomePage() {
-  function getStateTaxRate(state) {
-    const taxRates = {
-      CA: 0.0875,
-      TX: 0.0625,
-      FL: 0.06,
-      NY: 0.04,
-      GA: 0.07,
-      // Add more as needed
-    };
-    return taxRates[state] || 0.07; // Default to 7% if unknown
-  }
-
   const carModel = mainStore((state) => state.carModel);
   const budget = [
     { model: "Audi A4 2014-2016", type: "budget" },
@@ -106,21 +97,38 @@ export default function HomePage() {
           <SmallText>გრძელი ტექსტი</SmallText>
         </BoxDiv>
         <BoxDiv>
-          <TeslaSvg />
+          <EvacuatorSvg />
           <BigText>ტექსტი</BigText>
           <SmallText>გრძელი ტექსტი</SmallText>
         </BoxDiv>
         <BoxDiv>
-          <TeslaSvg />
+          <TaxiDriverSvg />
           <BigText>ტექსტი</BigText>
           <SmallText>გრძელი ტექსტი</SmallText>
         </BoxDiv>
         <BoxDiv>
-          <TeslaSvg />
+          <PartsSvg />
           <BigText>ტექსტი</BigText>
           <SmallText>გრძელი ტექსტი</SmallText>
         </BoxDiv>
       </MiddleDiv>
+      <AboutUsDiv>
+        <AboutUsLeftDiv>
+          <HeaderSmallText>ჩვენს შესახებ </HeaderSmallText>
+          <AboutUsMediumText>providing reliable car rentals</AboutUsMediumText>
+          <AboutUsParagraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </AboutUsParagraph>
+          <AboutUsIconsAndText>
+            <IconsAndText></IconsAndText>
+            <IconsAndText></IconsAndText>
+          </AboutUsIconsAndText>
+        </AboutUsLeftDiv>
+      </AboutUsDiv>
       {/* <VehiclesDiv>
         <CarCard>
           <ImageWrapper>
@@ -158,7 +166,7 @@ const MainBox = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh + 172px);
   padding-top: 92px;
   background-color: #f2f4f9;
 `;
@@ -168,10 +176,40 @@ const HeaderDiv = styled.div`
   margin-left: 120px;
   width: 100%;
 `;
+const AboutUsDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  width: 100%;
+  background-color: #f2f4f9;
+`;
+const AboutUsLeftDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+`;
+const AboutUsMediumText = styled.h3`
+  font-size: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--darkBlue);
+`;
+const AboutUsParagraph = styled.p`
+  font-size: 18px;
+  color: var(--middleGrey);
+`;
+const AboutUsIconsAndText = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 74px;
+`;
+const IconsAndText = styled.div``;
 const MiddleDiv = styled.div`
   width: 100%;
   display: flex;
   padding: 40px;
+  margin-top: 20px;
   background-color: #f2f4f9;
 `;
 const BoxDiv = styled.div`
@@ -213,7 +251,7 @@ const MainText = styled.h1`
 const MainButton = styled.button`
   width: 243px;
   height: 67px;
-  background-color: var(--yellow);
+  background-color: blue;
   color: white;
   font-weight: bold;
   font-size: 20px;
