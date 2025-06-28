@@ -124,7 +124,7 @@ const LogoImage = styled.img`
 `;
 const NavBar = styled.div`
   position: relative;
-  padding: 26px 30px;
+  padding: 26px 46px;
 
   @media screen and (min-width: 768px) {
     display: flex;
