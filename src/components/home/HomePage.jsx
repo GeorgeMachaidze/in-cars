@@ -8,6 +8,7 @@ import TeslaSvg from "../svg/TeslaSvg";
 import EvacuatorSvg from "../svg/EvacuatorSvg";
 import TaxiDriverSvg from "../svg/TaxiDriverSvg";
 import PartsSvg from "../svg/PartsSvg";
+import VehicleCardComponent from "./cardComponent/VehicleCardComponent";
 
 export default function HomePage() {
   const carModel = mainStore((state) => state.carModel);
@@ -72,7 +73,62 @@ export default function HomePage() {
         </AboutUsMiddleDiv>
       </AboutUsDiv>
       <VehicleComponents>
-        <VehicleCardsHeaderText>Top 4 Cars In Georgia</VehicleCardsHeaderText>
+        <VehicleComponentHeader>
+          <VehicleCardsHeaderText>Top 4 Cars In Georgia</VehicleCardsHeaderText>
+          <MainButton
+            style={{
+              padding: "20px 24px 20px 40px",
+              fontSize: "20px",
+              width: "282px",
+              marginTop: 0,
+            }}
+          >
+            Discover Vehicles
+            <ButtonLine></ButtonLine>
+          </MainButton>
+        </VehicleComponentHeader>
+        <VehicleCardsMiddle>
+          <VehicleCardsDiv>
+            <VehicleCardComponent
+              image={"/images/camry.png"}
+              name={"Toyota Camry"}
+              price="3500$"
+              gasType="Gasoline"
+              carType="Business"
+              transmission="Automatic"
+              axle="F W D"
+            />
+            <VehicleCardComponent
+              image={"/images/subaru.png"}
+              name={"Subaru Forester"}
+              price="2500$"
+              gasType="Gasoline"
+              carType="SUV"
+              transmission="Automatic"
+              axle="A W D"
+            />
+          </VehicleCardsDiv>
+          <VehicleCardsDiv>
+            <VehicleCardComponent
+              image={"/images/prius.png"}
+              name={"Toyota Prius"}
+              price="2800$"
+              gasType="Gasoline"
+              carType="Family"
+              transmission="Automatic"
+              axle="F W D"
+            />
+            <VehicleCardComponent
+              image={"/images/fusion.png"}
+              name={"Ford Fusion"}
+              price="5500$"
+              gasType="Gasoline"
+              carType="Business"
+              transmission="Automatic"
+              axle="F W D"
+            />
+          </VehicleCardsDiv>
+        </VehicleCardsMiddle>
       </VehicleComponents>
     </MainBox>
   );
@@ -90,6 +146,7 @@ const MainBox = styled.div`
 const VehicleComponents = styled.div`
   width: 100%;
   background-color: #f2f4f9;
+  padding: 100px;
 `;
 
 const VehicleCardsHeaderText = styled.h1`
@@ -97,7 +154,26 @@ const VehicleCardsHeaderText = styled.h1`
   font-size: 52px;
   max-width: auto;
   font-weight: bold;
+  text-transform: uppercase;
   color: var(--darkBlue);
+`;
+const VehicleCardsMiddle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+`;
+const VehicleCardsDiv = styled.div`
+  display: flex;
+  gap: 76px;
+`;
+
+const VehicleComponentHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
 `;
 const HeaderDiv = styled.div`
   display: flex;
