@@ -71,6 +71,9 @@ export default function HomePage() {
           </AboutUsRightDiv>
         </AboutUsMiddleDiv>
       </AboutUsDiv>
+      <VehicleComponents>
+        <VehicleCardsHeaderText>Top 4 Cars In Georgia</VehicleCardsHeaderText>
+      </VehicleComponents>
     </MainBox>
   );
 }
@@ -81,11 +84,21 @@ const MainBox = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: calc(100vh + 172px);
-  padding-top: 92px;
+  padding-top: 72px;
+  background-color: #f2f4f9;
+`;
+const VehicleComponents = styled.div`
+  width: 100%;
   background-color: #f2f4f9;
 `;
 
+const VehicleCardsHeaderText = styled.h1`
+  font-family: "Atkinson Hyperlegible";
+  font-size: 52px;
+  max-width: auto;
+  font-weight: bold;
+  color: var(--darkBlue);
+`;
 const HeaderDiv = styled.div`
   display: flex;
   margin-left: 120px;
@@ -113,16 +126,11 @@ const AboutUsRightDiv = styled.div`
   width: 50%;
 `;
 const AboutUsMediumText = styled.h3`
+  font-family: "Atkinson Hyperlegible";
   font-size: 50px;
   font-weight: bold;
   text-transform: uppercase;
   color: var(--darkBlue);
-`;
-
-const AboutUsIconsAndText = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 44px;
 `;
 
 const AboutUsCircle = styled.div`

@@ -115,6 +115,7 @@ const MainDiv = styled.div`
   width: 100vw;
   position: fixed;
   background-color: #f2f4f9;
+  z-index: 1;
 `;
 const LogoImage = styled.img`
   cursor: pointer;
@@ -125,7 +126,6 @@ const LogoImage = styled.img`
 const NavBar = styled.div`
   position: relative;
   padding: 26px 46px;
-
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
