@@ -5,6 +5,7 @@ import Link from "next/link";
 import BurgerMenuWhite from "../svg/BurgerMenuWhite";
 import NavbarCloseIcon from "../svg/NavbarColseIcon";
 import { usePathname } from "next/navigation";
+import Languages from "./languages/Languages";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
@@ -26,7 +27,7 @@ export default function Navbar() {
           <MenuList>
             <MenuItem
               style={{
-                color: isHomePage ? "var(--yellow)" : "transparent",
+                color: isHomePage ? "var(--yellow)" : "  #bdbdbd",
               }}
             >
               <Link href="/">მთავარი</Link>
@@ -35,15 +36,22 @@ export default function Navbar() {
             <MenuItem>
               <Link href="/about">ჩვენს შესახებ</Link>
             </MenuItem>
-            <MenuItem>
+            <MenuItem
+              style={{
+                color:
+                  pathname === "/calculator" ? "var(--yellow)" : "  #bdbdbd",
+              }}
+            >
               <Link href="/calculator">კალკულატორი</Link>
             </MenuItem>
 
             <MenuItem>
               <Link href="/contact">კონტაქტი</Link>
             </MenuItem>
+            <Languages />
           </MenuList>
         </NavBarRightSide>
+
         <SideMenu style={{ display: isOpen ? "flex" : "none" }}>
           <Menu>
             <IconBox onClick={toggleMenu}>

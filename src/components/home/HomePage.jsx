@@ -129,7 +129,6 @@ export default function HomePage() {
           </VehicleCardsDiv>
         </VehicleCardsMiddle>
       </VehicleComponents>
-      <AuctionFeeCalculator />
     </MainBox>
   );
 }

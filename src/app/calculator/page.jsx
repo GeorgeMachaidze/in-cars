@@ -1,8 +1,16 @@
-export default function CalculatorsPage() {
+"use client";
+
+import styled from "styled-components";
+import AuctionFeeCalculator from "@/components/home/AuctionFeeCalculator";
+
+export default function CalculatorPage() {
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Calculators</h1>
-      <p>Here you can find all vehicle and auction fee calculators.</p>
-    </div>
+    <MainDiv>
+      <MiddleDiv>
+        <AuctionFeeCalculator />
+      </MiddleDiv>
+    </MainDiv>
   );
 }
+const MainDiv = styled.div``;
+const MiddleDiv = styled.div``;

@@ -1,4 +1,8 @@
+"use client";
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import ArrowUpSvg from "../svg/ArrowUpSvg";
+import ArrowDownSvg from "../svg/ArrowDownSvg";
 
 const COPART_TIERS = [
   { min: 0, max: 49.99, fee: 1 },
@@ -66,9 +70,20 @@ const IAAI_TIERS = [
   { min: 15000, max: Infinity, fee: 575 },
 ];
 
-const AuctionFeeCalculator = () => {
+export default function AuctionFeeCalculator() {
   const [auctionType, setAuctionType] = useState("Copart");
   const [lotPrice, setLotPrice] = useState(0);
+
+  const handleChange = (e) => {
+    let val = e.target.value;
+
+    // Remove leading zero unless it's just "0"
+    if (val.length > 1 && val.startsWith("0")) {
+      val = val.replace(/^0+/, "");
+    }
+
+    setLotPrice(val);
+  };
   const [fees, setFees] = useState({
     internetBid: 0,
     feeA: 0,
@@ -115,49 +130,256 @@ const AuctionFeeCalculator = () => {
 
   const { auctionFee, totalPrice } = calculateTotal();
 
+  const [open, setOpen] = useState(false);
+
+  const handleSelect = (option) => {
+    setAuctionType(option);
+
+    setOpen(false);
+  };
+
   return (
-    <div style={{ maxWidth: 400, margin: "0 auto" }}>
-      <h2>Auction Fee Calculator</h2>
+    <Container>
+      <Title>Auction Fee Calculator</Title>
+      <SelectGroup>
+        <Label>Auction Type</Label>
+        <SelectWrapper>
+          <Selected onClick={() => setOpen(!open)}>
+            {"Copart"}
+            <span>{open ? <ArrowUpSvg /> : <ArrowDownSvg />}</span>
+          </Selected>
+          {open && (
+            <Dropdown>
+              <Option onClick={() => handleSelect("Copart")}>{"Copart"}</Option>
+              <Option onClick={() => handleSelect("IAAI")}>{"IAAI"}</Option>
+            </Dropdown>
+          )}
+        </SelectWrapper>
+      </SelectGroup>
 
-      <div>
-        <label>
-          Auction Type:
-          <select
-            value={auctionType}
-            onChange={(e) => setAuctionType(e.target.value)}
-          >
-            <option value="Copart">Copart</option>
-            <option value="IAAI">IAAI</option>
-          </select>
-        </label>
-      </div>
+      <InputGroup>
+        <Label>Lot Price ($)</Label>
+        <Input
+          type="number"
+          value={lotPrice}
+          onChange={handleChange}
+          onFocus={() => lotPrice === "0" && setLotPrice("")}
+        />
+      </InputGroup>
 
-      <div>
-        <label>
-          Lot Price ($):
-          <input
-            type="number"
-            value={lotPrice}
-            onChange={(e) => setLotPrice(parseFloat(e.target.value) || 0)}
-          />
-        </label>
-      </div>
+      <Divider />
 
-      <h4>Fees Breakdown</h4>
-      <ul>
-        <li>Buyer Fee A: ${fees.feeA}</li>
-        <li>Internet Bid Fee: ${fees.internetBid}</li>
-        {auctionType === "IAAI" && <li>Broker Fee: ${fees.broker}</li>}
-        <li>Gate Fee: ${fees.gate}</li>
-        <li>Environmental Fee: ${fees.environmental}</li>
-        <li>Report Fee: ${fees.report}</li>
-        <li>Title Pickup Fee: ${fees.titlePickup}</li>
-      </ul>
+      <FeeList>
+        <FeeItem>
+          <span>Buyer Fee A:</span> <strong>${fees.feeA}</strong>
+        </FeeItem>
+        <FeeItem>
+          <span>Internet Bid Fee:</span> <strong>${fees.internetBid}</strong>
+        </FeeItem>
+        {auctionType === "IAAI" && (
+          <FeeItem>
+            <span>Broker Fee:</span> <strong>${fees.broker}</strong>
+          </FeeItem>
+        )}
+        <FeeItem>
+          <span>Gate Fee:</span> <strong>${fees.gate}</strong>
+        </FeeItem>
+        <FeeItem>
+          <span>Environmental Fee:</span> <strong>${fees.environmental}</strong>
+        </FeeItem>
+        <FeeItem>
+          <span>Report Fee:</span> <strong>${fees.report}</strong>
+        </FeeItem>
+        <FeeItem>
+          <span>Title Pickup Fee:</span> <strong>${fees.titlePickup}</strong>
+        </FeeItem>
+      </FeeList>
 
-      <h4>Total Auction Fee: ${auctionFee}</h4>
-      <h3>Total Price: ${totalPrice}</h3>
-    </div>
+      <Divider />
+
+      <TotalSection>
+        <h4>
+          Total Auction Fee: <span>${auctionFee}</span>
+        </h4>
+        <h3>
+          Total Price: <span>${totalPrice}</span>
+        </h3>
+        <CalculateButton>Calculate</CalculateButton>
+      </TotalSection>
+    </Container>
   );
-};
+}
 
-export default AuctionFeeCalculator;
+const Container = styled.div`
+  width: 450px;
+  margin: 160px auto 0 auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  color: #0b1b35;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`;
+
+const Title = styled.h2`
+  font-size: 26px;
+  font-weight: 800;
+  color: #0b1b35;
+  text-align: center;
+  margin-bottom: 10px;
+`;
+
+const Label = styled.label`
+  font-weight: 600;
+  font-size: 15px;
+  color: #0b1b35;
+`;
+
+const Input = styled.input`
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  margin-top: 5px;
+  outline: none;
+  &:focus {
+    border-color: #0b1b35;
+  }
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    border-color: #333;
+    background: #fafafa;
+  }
+`;
+
+const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SelectGroup = styled(InputGroup)``;
+
+const FeeList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const FeeItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 15px;
+  color: #0b1b35;
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background: #e6e6e6;
+  margin: 10px 0;
+`;
+
+const TotalSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  h4,
+  h3 {
+    margin: 5px 0;
+    color: #0b1b35;
+  }
+
+  span {
+    color: #162a52;
+    font-weight: 700;
+  }
+`;
+
+const CalculateButton = styled.button`
+  width: 243px;
+  height: 47px;
+  background-color: var(--darkBlue);
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+`;
+const SelectWrapper = styled.div`
+  position: relative;
+
+  font-family: "Poppins", sans-serif;
+`;
+
+const Selected = styled.div`
+  background: #f5f5f5;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    border-color: #333;
+    background: #fafafa;
+  }
+`;
+
+const Dropdown = styled.ul`
+  list-style: none;
+  margin: 5px 0 0;
+  padding: 0;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  max-height: 180px;
+  overflow-y: auto;
+  transition: all 0.2s ease;
+`;
+
+const Option = styled.li`
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #0b1b35;
+    color: white;
+  }
+`;
