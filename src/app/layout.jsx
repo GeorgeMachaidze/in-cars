@@ -2,6 +2,7 @@ import StyledComponentsRegistry from "@/components/shared/StyledComopnentRegistr
 import "./globals.css";
 import { Inter } from "next/font/google";
 import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
+import Navbar from "@/components/nav-bar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,10 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <GoogleAnalytics />
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <Navbar />
+          {children}
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

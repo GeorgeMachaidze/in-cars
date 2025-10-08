@@ -1,9 +1,10 @@
+"use client";
 import { useState } from "react";
 import styled from "styled-components";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import BurgerMenuWhite from "../svg/BurgerMenuWhite";
 import NavbarCloseIcon from "../svg/NavbarColseIcon";
+import { usePathname } from "next/navigation";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
@@ -32,14 +33,14 @@ export default function Navbar() {
               {isHomePage ? <SmallLine></SmallLine> : null}
             </MenuItem>
             <MenuItem>
-              <Link href="/landing/industries">ჩვენს შესახებ</Link>
+              <Link href="/about">ჩვენს შესახებ</Link>
             </MenuItem>
             <MenuItem>
-              <Link href="/landing/about">კალკულატორი</Link>
+              <Link href="/calculator">კალკულატორი</Link>
             </MenuItem>
 
             <MenuItem>
-              <Link href="/landing/contact">კონტაქტი</Link>
+              <Link href="/contact">კონტაქტი</Link>
             </MenuItem>
           </MenuList>
         </NavBarRightSide>
@@ -56,32 +57,31 @@ export default function Navbar() {
                   color: pathname === "/" ? "white" : "inherit",
                 }}
               >
-                <Link href="/">Home</Link>
+                <Link href="/">მთავარი</Link>
               </MenuItem>
               <MenuItem
                 style={{
                   backgroundColor:
-                    pathname === "/landing/industries"
+                    pathname === "/about"
                       ? "rgba(31, 31, 31, 1"
                       : "transparent",
-                  color:
-                    pathname === "/landing/industries" ? "white" : "inherit",
+                  color: pathname === "/about" ? "white" : "inherit",
                 }}
               >
-                <Link href="/landing/industries">Industries</Link>
+                <Link href="/about">ჩვენს შესახებ</Link>
               </MenuItem>
               <MenuItem
                 style={{
                   backgroundColor:
-                    pathname === "/landing/about"
+                    pathname === "/calculator"
                       ? "rgba(31, 31, 31, 1"
                       : "transparent",
-                  color: pathname === "/landing/about" ? "white" : "inherit",
+                  color: pathname === "/calculator" ? "white" : "inherit",
                 }}
               >
-                <Link href="/landing/about">About Us</Link>
+                <Link href="/calculator">კალკულატორი</Link>
               </MenuItem>
-              <MenuItem
+              {/* <MenuItem
                 style={{
                   backgroundColor:
                     pathname === "/landing/gallery"
@@ -91,17 +91,17 @@ export default function Navbar() {
                 }}
               >
                 <Link href="/landing/gallery">Gallery</Link>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem
                 style={{
                   backgroundColor:
-                    pathname === "/landing/contact"
+                    pathname === "/contact"
                       ? "rgba(31, 31, 31, 1"
                       : "transparent",
-                  color: pathname === "/landing/contact" ? "white" : "inherit",
+                  color: pathname === "/contact" ? "white" : "inherit",
                 }}
               >
-                <Link href="/landing/contact">Contact</Link>
+                <Link href="/contact">კონტაქტი</Link>
               </MenuItem>
             </MenuList>
           </Menu>

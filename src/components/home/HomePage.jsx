@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import DropDownComponent from "./dropDownComponent/DropDownComponent";
 import mainStore from "@/store/mainStore";
@@ -9,17 +9,16 @@ import EvacuatorSvg from "../svg/EvacuatorSvg";
 import TaxiDriverSvg from "../svg/TaxiDriverSvg";
 import PartsSvg from "../svg/PartsSvg";
 import VehicleCardComponent from "./cardComponent/VehicleCardComponent";
+import AuctionFeeCalculator from "./AuctionFeeCalculator";
 
 export default function HomePage() {
   const carModel = mainStore((state) => state.carModel);
 
-  console.log(carModel);
   return (
     <MainBox>
       <HeaderDiv>
         <HeaderLeftSide>
           <HeaderLeftSideTexts>
-            <HeaderSmallText>PLAN YOUR TRIP NOW </HeaderSmallText>
             <MainText>EXPLORE THE WORLD WITH US</MainText>
           </HeaderLeftSideTexts>
           <MainButton>
@@ -130,6 +129,7 @@ export default function HomePage() {
           </VehicleCardsDiv>
         </VehicleCardsMiddle>
       </VehicleComponents>
+      <AuctionFeeCalculator />
     </MainBox>
   );
 }
@@ -140,7 +140,7 @@ const MainBox = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  padding-top: 72px;
+  padding-top: 92px;
   background-color: #f2f4f9;
 `;
 const VehicleComponents = styled.div`

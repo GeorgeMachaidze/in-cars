@@ -7,7 +7,6 @@ import HomePage from "@/components/home/HomePage";
 export default function Landing() {
   return (
     <MainDiv>
-      <Navbar />
       <MiddleDiv>
         <HomePage />
       </MiddleDiv>
