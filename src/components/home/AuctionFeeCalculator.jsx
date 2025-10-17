@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ArrowUpSvg from "../svg/ArrowUpSvg";
 import ArrowDownSvg from "../svg/ArrowDownSvg";
 import mainStore from "@/store/mainStore";
+import Footer from "../shared/Footer";
 
 const COPART_TIERS = [
   { min: 0, max: 49.99, fee: 1 },
@@ -141,165 +142,178 @@ export default function AuctionFeeCalculator() {
   };
 
   return (
-    <Container>
-      <Title>
-        {language === "ge"
-          ? "აუქციონის საფასურის გამომთვლელი"
-          : language === "en"
-          ? "Auction Fee Calculator"
-          : "Калькулятор сборов аукциона"}
-      </Title>
-      <SelectGroup>
-        <Label>
+    <MainBox>
+      <Container>
+        <Title>
           {language === "ge"
-            ? "აუქციონის ტიპი"
+            ? "აუქციონის საფასურის გამომთვლელი"
             : language === "en"
-            ? "Auction Type"
-            : "Тип аукциона"}
-        </Label>
-        <SelectWrapper>
-          <Selected onClick={() => setOpen(!open)}>
-            {"Copart"}
-            <span>{open ? <ArrowUpSvg /> : <ArrowDownSvg />}</span>
-          </Selected>
-          {open && (
-            <Dropdown>
-              <Option onClick={() => handleSelect("Copart")}>{"Copart"}</Option>
-              <Option onClick={() => handleSelect("IAAI")}>{"IAAI"}</Option>
-            </Dropdown>
-          )}
-        </SelectWrapper>
-      </SelectGroup>
-
-      <InputGroup>
-        <Label>
-          {language === "ge"
-            ? "ლოტის ფასი "
-            : language === "en"
-            ? "Lot Price "
-            : "Цена лота "}
-          ($)
-        </Label>
-        <Input
-          type="number"
-          value={lotPrice}
-          onChange={handleChange}
-          onFocus={() => lotPrice === "0" && setLotPrice("")}
-        />
-      </InputGroup>
-
-      <Divider />
-
-      <FeeList>
-        <FeeItem>
-          <span>
+            ? "Auction Fee Calculator"
+            : "Калькулятор сборов аукциона"}
+        </Title>
+        <SelectGroup>
+          <Label>
             {language === "ge"
-              ? "ყიდვის საფასური A:"
+              ? "აუქციონის ტიპი"
               : language === "en"
-              ? "Buyer Fee A:"
-              : "Комиссия покупателя A:"}
-          </span>{" "}
-          <strong>${fees.feeA}</strong>
-        </FeeItem>
-        <FeeItem>
-          <span>
+              ? "Auction Type"
+              : "Тип аукциона"}
+          </Label>
+          <SelectWrapper>
+            <Selected onClick={() => setOpen(!open)}>
+              {"Copart"}
+              <span>{open ? <ArrowUpSvg /> : <ArrowDownSvg />}</span>
+            </Selected>
+            {open && (
+              <Dropdown>
+                <Option onClick={() => handleSelect("Copart")}>
+                  {"Copart"}
+                </Option>
+                <Option onClick={() => handleSelect("IAAI")}>{"IAAI"}</Option>
+              </Dropdown>
+            )}
+          </SelectWrapper>
+        </SelectGroup>
+
+        <InputGroup>
+          <Label>
             {language === "ge"
-              ? "ინტერნეტ ფსონის საფასური:"
+              ? "ლოტის ფასი "
               : language === "en"
-              ? "Internet Bid Fee:"
-              : "Комиссия за интернет-ставку:"}
-          </span>{" "}
-          <strong>${fees.internetBid}</strong>
-        </FeeItem>
-        {auctionType === "IAAI" && (
+              ? "Lot Price "
+              : "Цена лота "}
+            ($)
+          </Label>
+          <Input
+            type="number"
+            value={lotPrice}
+            onChange={handleChange}
+            onFocus={() => lotPrice === "0" && setLotPrice("")}
+          />
+        </InputGroup>
+
+        <Divider />
+
+        <FeeList>
           <FeeItem>
             <span>
               {language === "ge"
-                ? "ბროკერის საფასური:"
+                ? "ყიდვის საფასური A:"
                 : language === "en"
-                ? "Broker Fee:"
-                : "Комиссия брокера:"}
+                ? "Buyer Fee A:"
+                : "Комиссия покупателя A:"}
             </span>{" "}
-            <strong>${fees.broker}</strong>
+            <strong>${fees.feeA}</strong>
           </FeeItem>
-        )}
-        <FeeItem>
-          <span>
-            {language === "ge"
-              ? "შესასვლელის საფასური:"
-              : language === "en"
-              ? "Gate Fee:"
-              : "Въездная плата:"}
-          </span>{" "}
-          <strong>${fees.gate}</strong>
-        </FeeItem>
-        <FeeItem>
-          <span>
-            {language === "ge"
-              ? "გარემოს დაცვის საფასური:"
-              : language === "en"
-              ? "Environmental Fee:"
-              : "Экологический сбор:"}
-          </span>{" "}
-          <strong>${fees.environmental}</strong>
-        </FeeItem>
-        <FeeItem>
-          <span>
-            {language === "ge"
-              ? "ანგარიშის საფასური:"
-              : language === "en"
-              ? "Report Fee:"
-              : "Плата за отчет:"}
-          </span>{" "}
-          <strong>${fees.report}</strong>
-        </FeeItem>
-        <FeeItem>
-          <span>
-            {language === "ge"
-              ? "წარწერის აღების საფასური:"
-              : language === "en"
-              ? "Title Pickup Fee:"
-              : "Плата за получение титула:"}
-          </span>{" "}
-          <strong>${fees.titlePickup}</strong>
-        </FeeItem>
-      </FeeList>
+          <FeeItem>
+            <span>
+              {language === "ge"
+                ? "ინტერნეტ ფსონის საფასური:"
+                : language === "en"
+                ? "Internet Bid Fee:"
+                : "Комиссия за интернет-ставку:"}
+            </span>{" "}
+            <strong>${fees.internetBid}</strong>
+          </FeeItem>
+          {auctionType === "IAAI" && (
+            <FeeItem>
+              <span>
+                {language === "ge"
+                  ? "ბროკერის საფასური:"
+                  : language === "en"
+                  ? "Broker Fee:"
+                  : "Комиссия брокера:"}
+              </span>{" "}
+              <strong>${fees.broker}</strong>
+            </FeeItem>
+          )}
+          <FeeItem>
+            <span>
+              {language === "ge"
+                ? "შესასვლელის საფასური:"
+                : language === "en"
+                ? "Gate Fee:"
+                : "Въездная плата:"}
+            </span>{" "}
+            <strong>${fees.gate}</strong>
+          </FeeItem>
+          <FeeItem>
+            <span>
+              {language === "ge"
+                ? "გარემოს დაცვის საფასური:"
+                : language === "en"
+                ? "Environmental Fee:"
+                : "Экологический сбор:"}
+            </span>{" "}
+            <strong>${fees.environmental}</strong>
+          </FeeItem>
+          <FeeItem>
+            <span>
+              {language === "ge"
+                ? "ანგარიშის საფასური:"
+                : language === "en"
+                ? "Report Fee:"
+                : "Плата за отчет:"}
+            </span>{" "}
+            <strong>${fees.report}</strong>
+          </FeeItem>
+          <FeeItem>
+            <span>
+              {language === "ge"
+                ? "წარწერის აღების საფასური:"
+                : language === "en"
+                ? "Title Pickup Fee:"
+                : "Плата за получение титула:"}
+            </span>{" "}
+            <strong>${fees.titlePickup}</strong>
+          </FeeItem>
+        </FeeList>
 
-      <Divider />
+        <Divider />
 
-      <TotalSection>
-        <h4>
-          {language === "ge"
-            ? "აუქციონის საერთო საფასური:"
-            : language === "en"
-            ? "Total Auction Fee:"
-            : "Общая комиссия аукциона:"}
-          <span>${auctionFee}</span>
-        </h4>
-        <h3>
-          {language === "ge"
-            ? "საერთო ფასი:"
-            : language === "en"
-            ? "Total Price:"
-            : "Общая цена:"}
-          <span>${totalPrice}</span>
-        </h3>
-        <CalculateButton>
-          {language === "ge"
-            ? "გამოთვლა"
-            : language === "en"
-            ? "Calculate"
-            : "Рассчитать"}
-        </CalculateButton>
-      </TotalSection>
-    </Container>
+        <TotalSection>
+          <h4>
+            {language === "ge"
+              ? "აუქციონის საერთო საფასური:"
+              : language === "en"
+              ? "Total Auction Fee:"
+              : "Общая комиссия аукциона:"}
+            <span>${auctionFee}</span>
+          </h4>
+          <h3>
+            {language === "ge"
+              ? "საერთო ფასი:"
+              : language === "en"
+              ? "Total Price:"
+              : "Общая цена:"}
+            <span>${totalPrice}</span>
+          </h3>
+          <CalculateButton>
+            {language === "ge"
+              ? "გამოთვლა"
+              : language === "en"
+              ? "Calculate"
+              : "Рассчитать"}
+          </CalculateButton>
+        </TotalSection>
+      </Container>
+      <Footer />
+    </MainBox>
   );
 }
-
+const MainBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 98px;
+  background-color: #f2f4f9;
+`;
 const Container = styled.div`
   width: 450px;
-  margin: 160px auto 0 auto;
-  padding: 32px;
+  margin: 64px auto 64px auto;
+  padding: 36px;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
