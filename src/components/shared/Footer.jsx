@@ -112,13 +112,13 @@ const MainDiv = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 296px;
-
   padding: 60px 90px;
   background-color: var(--darkBlue);
 `;
 const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 32px;
 `;
 const LogoImage = styled.img`
   width: 140px;

@@ -57,6 +57,7 @@ export default function Navbar() {
                   ? "About Us" //
                   : "О нас"}
               </Link>
+              {pathname === "/about" ? <SmallLine></SmallLine> : null}
             </MenuItem>
             <MenuItem
               style={{
@@ -71,6 +72,7 @@ export default function Navbar() {
                   ? "Calculator"
                   : "Калкулятор"}
               </Link>
+              {pathname === "/calculator" ? <SmallLine></SmallLine> : null}
             </MenuItem>
 
             <MenuItem>
@@ -81,6 +83,7 @@ export default function Navbar() {
                   ? "Contact"
                   : "Контакты"}
               </Link>
+              {pathname === "/contact" ? <SmallLine></SmallLine> : null}
             </MenuItem>
             <Languages />
           </MenuList>
