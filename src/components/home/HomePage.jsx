@@ -13,16 +13,28 @@ import AuctionFeeCalculator from "./AuctionFeeCalculator";
 
 export default function HomePage() {
   const carModel = mainStore((state) => state.carModel);
+  const { language } = mainStore();
 
   return (
     <MainBox>
       <HeaderDiv>
         <HeaderLeftSide>
           <HeaderLeftSideTexts>
-            <MainText>EXPLORE THE WORLD WITH US</MainText>
+            <MainText>
+              {language === "ge"
+                ? "გამოიკვლიე მსოფლიო ჩვენთან"
+                : language === "en"
+                ? "EXPLORE THE WORLD WITH US"
+                : "ИССЛЕДУЙТЕ МИР С НАМИ"}
+            </MainText>
           </HeaderLeftSideTexts>
           <MainButton>
-            შეუკვეთე
+            {language === "ge"
+              ? "შეუკვეთე"
+              : language === "en"
+              ? "Order Now"
+              : "Закажите"}
+
             <ButtonLine></ButtonLine>
           </MainButton>
         </HeaderLeftSide>
@@ -32,38 +44,74 @@ export default function HomePage() {
         <DealerImage src="/images/copart.png"></DealerImage>
       </MiddleDiv>
       <AboutUsDiv>
-        <AboutUsMediumText>providing reliable car rentals</AboutUsMediumText>
+        <AboutUsMediumText>
+          {language === "ge"
+            ? "საიმედო მანქანის იმპორტი"
+            : language === "en"
+            ? "Providing reliable car import"
+            : "предоставляем импорт надежную автомобилей"}{" "}
+        </AboutUsMediumText>
         <AboutUsMiddleDiv>
           <AboutUsLeftDiv>
             <IconsAndText>
               <AboutUsCircle>
                 <AboutUsNumber>1</AboutUsNumber>
               </AboutUsCircle>
-              <AboutUsText>Select Desired Vehicle</AboutUsText>
+              <AboutUsText>
+                {language === "ge"
+                  ? "აირჩიეთ სასურველი ავტომობილი"
+                  : language === "en"
+                  ? "Select Desired Vehicle"
+                  : "Выберите желаемый автомобиль"}
+              </AboutUsText>
             </IconsAndText>
             <IconsAndText>
               <AboutUsCircle>
                 <AboutUsNumber>2</AboutUsNumber>
               </AboutUsCircle>
-              <AboutUsText>Bid In Auction</AboutUsText>
+              <AboutUsText>
+                {language === "ge"
+                  ? "გააკეთეთ ფსონი აუქციონზე"
+                  : language === "en"
+                  ? "Bid In Auction"
+                  : "Сделайте ставку на аукционе"}
+              </AboutUsText>
             </IconsAndText>
             <IconsAndText>
               <AboutUsCircle>
                 <AboutUsNumber>3</AboutUsNumber>
               </AboutUsCircle>
-              <AboutUsText>Win The Auction</AboutUsText>
+              <AboutUsText>
+                {language === "ge"
+                  ? "მოიგეთ აუქციონი"
+                  : language === "en"
+                  ? "Win The Auction"
+                  : "Выиграйте аукцион"}
+              </AboutUsText>
             </IconsAndText>
             <IconsAndText>
               <AboutUsCircle>
                 <AboutUsNumber>4</AboutUsNumber>
               </AboutUsCircle>
-              <AboutUsText>Load In Container</AboutUsText>
+              <AboutUsText>
+                {language === "ge"
+                  ? "ჩატვირთეთ კონტეინერში"
+                  : language === "en"
+                  ? "Load In Container"
+                  : "Загрузите в контейнер"}
+              </AboutUsText>
             </IconsAndText>
             <IconsAndText>
               <AboutUsCircle>
                 <AboutUsNumber>5</AboutUsNumber>
               </AboutUsCircle>
-              <AboutUsText>Ship To Destination</AboutUsText>
+              <AboutUsText>
+                {language === "ge"
+                  ? "გაგზავნეთ დანიშნულების ადგილას"
+                  : language === "en"
+                  ? "Ship To Destination"
+                  : "Отправьте в пункт назначения"}
+              </AboutUsText>
             </IconsAndText>
           </AboutUsLeftDiv>
           <AboutUsRightDiv>
@@ -73,7 +121,13 @@ export default function HomePage() {
       </AboutUsDiv>
       <VehicleComponents>
         <VehicleComponentHeader>
-          <VehicleCardsHeaderText>Top 4 Cars In Georgia</VehicleCardsHeaderText>
+          <VehicleCardsHeaderText>
+            {language === "ge"
+              ? "ტოპ 4 მანქანა საქართველოში"
+              : language === "en"
+              ? "Top 4 Cars In Georgia"
+              : "Топ 4 автомобиля в Грузии"}
+          </VehicleCardsHeaderText>
           <MainButton
             style={{
               padding: "20px 24px 20px 40px",
@@ -82,7 +136,12 @@ export default function HomePage() {
               marginTop: 0,
             }}
           >
-            Discover Vehicles
+            {language === "ge"
+              ? "შეარჩიე ავტომობილები"
+              : language === "en"
+              ? "Discover Vehicles"
+              : "Выберите для себя автомобили"}
+
             <ButtonLine></ButtonLine>
           </MainButton>
         </VehicleComponentHeader>
@@ -139,7 +198,7 @@ const MainBox = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  padding-top: 92px;
+  padding-top: 98px;
   background-color: #f2f4f9;
 `;
 const VehicleComponents = styled.div`

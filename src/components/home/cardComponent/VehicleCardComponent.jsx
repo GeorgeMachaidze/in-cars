@@ -19,6 +19,7 @@ export default function VehicleCardComponent({
   transmission,
   axle,
 }) {
+  const { language } = mainStore();
   return (
     <MainDiv>
       <VehicleImage src={image}></VehicleImage>
@@ -50,7 +51,11 @@ export default function VehicleCardComponent({
             </TextAndSvg>
           </TextAndSvgDiv>
           <MainButton style={{}}>
-            Order Vehicle
+            {language === "ge"
+              ? "შეუკვეთე"
+              : language === "en"
+              ? "Order Now"
+              : "Закажите"}
             <ButtonLine></ButtonLine>
           </MainButton>
         </RightSideList>

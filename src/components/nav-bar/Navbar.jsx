@@ -1,18 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import BurgerMenuWhite from "../svg/BurgerMenuWhite";
 import NavbarCloseIcon from "../svg/NavbarColseIcon";
 import { usePathname } from "next/navigation";
 import Languages from "./languages/Languages";
+import mainStore from "@/store/mainStore";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { language } = mainStore();
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  // Ensure client-only render for dynamic values
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <MainDiv>
@@ -30,11 +40,23 @@ export default function Navbar() {
                 color: isHomePage ? "var(--yellow)" : "  #bdbdbd",
               }}
             >
-              <Link href="/">მთავარი</Link>
+              <Link href="/">
+                {language === "ge"
+                  ? "მთავარი"
+                  : language === "en"
+                  ? "Home"
+                  : "Главная"}
+              </Link>
               {isHomePage ? <SmallLine></SmallLine> : null}
             </MenuItem>
             <MenuItem>
-              <Link href="/about">ჩვენს შესახებ</Link>
+              <Link href="/about">
+                {language === "ge"
+                  ? "ჩვენს შესახებ"
+                  : language === "en"
+                  ? "About Us" //
+                  : "О нас"}
+              </Link>
             </MenuItem>
             <MenuItem
               style={{
@@ -42,11 +64,23 @@ export default function Navbar() {
                   pathname === "/calculator" ? "var(--yellow)" : "  #bdbdbd",
               }}
             >
-              <Link href="/calculator">კალკულატორი</Link>
+              <Link href="/calculator">
+                {language === "ge"
+                  ? "გამომთვლელი"
+                  : language === "en"
+                  ? "Calculator"
+                  : "Калкулятор"}
+              </Link>
             </MenuItem>
 
             <MenuItem>
-              <Link href="/contact">კონტაქტი</Link>
+              <Link href="/contact">
+                {language === "ge"
+                  ? "კონტაქტი"
+                  : language === "en"
+                  ? "Contact"
+                  : "Контакты"}
+              </Link>
             </MenuItem>
             <Languages />
           </MenuList>
@@ -183,6 +217,7 @@ const MenuList = styled.ul`
   gap: 16px;
   margin-left: 20px;
   margin-top: 30px;
+  margin-right: 46px;
   list-style: none;
   padding: 0;
   @media screen and (min-width: 768px) {
@@ -201,6 +236,7 @@ const Menu = styled.div`
 
 const MenuItem = styled.li`
   font-family: "Open Sans";
+  cursor: pointer;
   font-size: 16px;
   font-style: semi-bold;
   font-weight: 600;
