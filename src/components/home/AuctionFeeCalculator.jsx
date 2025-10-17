@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ArrowUpSvg from "../svg/ArrowUpSvg";
 import ArrowDownSvg from "../svg/ArrowDownSvg";
+import mainStore from "@/store/mainStore";
 
 const COPART_TIERS = [
   { min: 0, max: 49.99, fee: 1 },
@@ -73,6 +74,7 @@ const IAAI_TIERS = [
 export default function AuctionFeeCalculator() {
   const [auctionType, setAuctionType] = useState("Copart");
   const [lotPrice, setLotPrice] = useState(0);
+  const { language } = mainStore();
 
   const handleChange = (e) => {
     let val = e.target.value;
@@ -140,9 +142,21 @@ export default function AuctionFeeCalculator() {
 
   return (
     <Container>
-      <Title>Auction Fee Calculator</Title>
+      <Title>
+        {language === "ge"
+          ? "აუქციონის საფასურის გამომთვლელი"
+          : language === "en"
+          ? "Auction Fee Calculator"
+          : "Калькулятор сборов аукциона"}
+      </Title>
       <SelectGroup>
-        <Label>Auction Type</Label>
+        <Label>
+          {language === "ge"
+            ? "აუქციონის ტიპი"
+            : language === "en"
+            ? "Auction Type"
+            : "Тип аукциона"}
+        </Label>
         <SelectWrapper>
           <Selected onClick={() => setOpen(!open)}>
             {"Copart"}
@@ -158,7 +172,14 @@ export default function AuctionFeeCalculator() {
       </SelectGroup>
 
       <InputGroup>
-        <Label>Lot Price ($)</Label>
+        <Label>
+          {language === "ge"
+            ? "ლოტის ფასი "
+            : language === "en"
+            ? "Lot Price "
+            : "Цена лота "}
+          ($)
+        </Label>
         <Input
           type="number"
           value={lotPrice}
@@ -171,27 +192,76 @@ export default function AuctionFeeCalculator() {
 
       <FeeList>
         <FeeItem>
-          <span>Buyer Fee A:</span> <strong>${fees.feeA}</strong>
+          <span>
+            {language === "ge"
+              ? "ყიდვის საფასური A:"
+              : language === "en"
+              ? "Buyer Fee A:"
+              : "Комиссия покупателя A:"}
+          </span>{" "}
+          <strong>${fees.feeA}</strong>
         </FeeItem>
         <FeeItem>
-          <span>Internet Bid Fee:</span> <strong>${fees.internetBid}</strong>
+          <span>
+            {language === "ge"
+              ? "ინტერნეტ ფსონის საფასური:"
+              : language === "en"
+              ? "Internet Bid Fee:"
+              : "Комиссия за интернет-ставку:"}
+          </span>{" "}
+          <strong>${fees.internetBid}</strong>
         </FeeItem>
         {auctionType === "IAAI" && (
           <FeeItem>
-            <span>Broker Fee:</span> <strong>${fees.broker}</strong>
+            <span>
+              {language === "ge"
+                ? "ბროკერის საფასური:"
+                : language === "en"
+                ? "Broker Fee:"
+                : "Комиссия брокера:"}
+            </span>{" "}
+            <strong>${fees.broker}</strong>
           </FeeItem>
         )}
         <FeeItem>
-          <span>Gate Fee:</span> <strong>${fees.gate}</strong>
+          <span>
+            {language === "ge"
+              ? "შესასვლელის საფასური:"
+              : language === "en"
+              ? "Gate Fee:"
+              : "Въездная плата:"}
+          </span>{" "}
+          <strong>${fees.gate}</strong>
         </FeeItem>
         <FeeItem>
-          <span>Environmental Fee:</span> <strong>${fees.environmental}</strong>
+          <span>
+            {language === "ge"
+              ? "გარემოს დაცვის საფასური:"
+              : language === "en"
+              ? "Environmental Fee:"
+              : "Экологический сбор:"}
+          </span>{" "}
+          <strong>${fees.environmental}</strong>
         </FeeItem>
         <FeeItem>
-          <span>Report Fee:</span> <strong>${fees.report}</strong>
+          <span>
+            {language === "ge"
+              ? "ანგარიშის საფასური:"
+              : language === "en"
+              ? "Report Fee:"
+              : "Плата за отчет:"}
+          </span>{" "}
+          <strong>${fees.report}</strong>
         </FeeItem>
         <FeeItem>
-          <span>Title Pickup Fee:</span> <strong>${fees.titlePickup}</strong>
+          <span>
+            {language === "ge"
+              ? "წარწერის აღების საფასური:"
+              : language === "en"
+              ? "Title Pickup Fee:"
+              : "Плата за получение титула:"}
+          </span>{" "}
+          <strong>${fees.titlePickup}</strong>
         </FeeItem>
       </FeeList>
 
@@ -199,12 +269,28 @@ export default function AuctionFeeCalculator() {
 
       <TotalSection>
         <h4>
-          Total Auction Fee: <span>${auctionFee}</span>
+          {language === "ge"
+            ? "აუქციონის საერთო საფასური:"
+            : language === "en"
+            ? "Total Auction Fee:"
+            : "Общая комиссия аукциона:"}
+          <span>${auctionFee}</span>
         </h4>
         <h3>
-          Total Price: <span>${totalPrice}</span>
+          {language === "ge"
+            ? "საერთო ფასი:"
+            : language === "en"
+            ? "Total Price:"
+            : "Общая цена:"}
+          <span>${totalPrice}</span>
         </h3>
-        <CalculateButton>Calculate</CalculateButton>
+        <CalculateButton>
+          {language === "ge"
+            ? "გამოთვლა"
+            : language === "en"
+            ? "Calculate"
+            : "Рассчитать"}
+        </CalculateButton>
       </TotalSection>
     </Container>
   );
