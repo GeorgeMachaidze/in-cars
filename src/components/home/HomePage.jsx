@@ -10,6 +10,7 @@ import TaxiDriverSvg from "../svg/TaxiDriverSvg";
 import PartsSvg from "../svg/PartsSvg";
 import VehicleCardComponent from "./cardComponent/VehicleCardComponent";
 import AuctionFeeCalculator from "./AuctionFeeCalculator";
+import Footer from "../shared/Footer";
 
 export default function HomePage() {
   const carModel = mainStore((state) => state.carModel);
@@ -188,6 +189,7 @@ export default function HomePage() {
           </VehicleCardsDiv>
         </VehicleCardsMiddle>
       </VehicleComponents>
+      <Footer />
     </MainBox>
   );
 }
